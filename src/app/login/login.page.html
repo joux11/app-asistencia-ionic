@@ -1,0 +1,88 @@
+<ion-content [fullscreen]="true">
+
+  <!-- Login Page -->
+  <div class="container" *ngIf="screen === 'signin'">
+    <h1 class="heading">👋 Bienvenido<br><br></h1>
+    <p class="para">Iniciar Sesion</p>
+    <form [formGroup]="formDataL">
+      <ion-item lines="none" class="ion-item">
+        <fieldset class="input-item">
+          <legend>Correo Electronico</legend>
+          <ion-input formControlName="email" type="email" placeholder="name@domain.com"></ion-input>
+        </fieldset>
+      </ion-item>
+      <ion-item lines="none" class="ion-item">
+        <fieldset class="input-item">
+          <legend>Contraseña</legend>
+          <ion-input formControlName="password" type="password" placeholder="*******"></ion-input>
+        </fieldset>
+      </ion-item>
+
+      <p class="signup-text"><a (click)="change('signup')">Registrase</a></p>
+      <ion-button class="login-button" (click)="login()" expand="block">Ingresar</ion-button>
+
+    </form>
+  </div>
+
+  <!-- Sign up page -->
+  <div class="container" *ngIf="screen === 'signup'">
+    <h1 class="heading">🚀 Crear una Cuenta<br><br></h1>
+    <p class="para">Registrate para continuar</p>
+    <form [formGroup]="formData">
+      <ion-item lines="none" class="ion-item">
+        <fieldset class="input-item">
+          <legend>Cedula</legend>
+          <ion-input formControlName="cedula" type="text" placeholder="1234567890"></ion-input>
+        </fieldset>
+      </ion-item>
+      <ion-item lines="none" class="ion-item">
+        <fieldset class="input-item">
+          <legend>Nombre</legend>
+          <ion-input formControlName="name" type="text" placeholder="John "></ion-input>
+        </fieldset>
+      </ion-item>
+      <ion-item lines="none" class="ion-item">
+        <fieldset class="input-item">
+          <legend>Segundo Nombre</legend>
+          <ion-input formControlName="secondname" type="text" placeholder="John "></ion-input>
+        </fieldset>
+      </ion-item>
+      <ion-item lines="none" class="ion-item">
+        <fieldset class="input-item">
+          <legend>Apellido</legend>
+          <ion-input formControlName="lastname" type="text" placeholder=" Doe"></ion-input>
+        </fieldset>
+      </ion-item>
+      <ion-item lines="none" class="ion-item">
+        <fieldset class="input-item">
+          <legend>Segundo Apellido</legend>
+          <ion-input formControlName="secondlastname" type="text" placeholder=" Doe"></ion-input>
+        </fieldset>
+      </ion-item>
+      <ion-item lines="none" class="ion-item">
+        <fieldset class="input-item">
+          <legend>Numero celular</legend>
+          <ion-input formControlName="celular" type="email" placeholder="john@doe.com"></ion-input>
+        </fieldset>
+      </ion-item>
+      <ion-item lines="none" class="ion-item">
+        <fieldset class="input-item">
+          <legend>Correo</legend>
+          <ion-input formControlName="email" type="email" placeholder="john@doe.com"></ion-input>
+        </fieldset>
+      </ion-item>
+      <ion-item lines="none" class="ion-item">
+        <fieldset class="input-item">
+          <legend>Contraseña</legend>
+          <ion-input formControlName="password" type="password" placeholder="*******"></ion-input>
+        </fieldset>
+      </ion-item>
+      <p class="signup-text">Ya me encuentro registrado!&nbsp;<a (click)="change('signin')">Inciar Sesion?</a></p>
+      <ion-button class="login-button" (click)="register()" expand="block">Registrarse</ion-button>
+
+    </form>
+  </div>
+
+
+
+</ion-content>
