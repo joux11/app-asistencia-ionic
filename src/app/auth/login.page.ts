@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { AuthService } from '../services/auth.service';
+
 import { NavController } from '@ionic/angular';
+import { AppService } from '../services/app.service';
+import { IUsuario } from '../interfaces/Usuario.interface';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +15,7 @@ export class LoginPage {
   formData: FormGroup;
   formDataL: FormGroup;
   isLoading: boolean = false;
-  constructor(private fb: FormBuilder, private auth: AuthService, private _navController: NavController) {
+  constructor(private fb: FormBuilder, private auth: AppService, private _navController: NavController) {
     this.formData = this.fb.group({
       cedula: ['', [Validators.required]],
       name: ['', [Validators.required]],
@@ -38,26 +40,32 @@ export class LoginPage {
 
   login() {
 
-    if (this.formDataL.valid) {
-
-      const body = {
-        accion: 'loginUser',
-        email: this.formDataL.get('email')!.value,
-        password: this.formDataL.get('password')!.value
-      }
-      console.log(body)
-
-      this.auth.userLogin(body).subscribe((data: any) => {
-        if (data.status) {
-          this.auth.showToast(data.message);
-          this._navController.navigateRoot('home');
-          this.formData.reset()
-
-        } else {
-          this.auth.showToast(data.message);
-        }
-      });
+    if (!this.formDataL.valid) {
+      this.formDataL.markAllAsTouched()
+      return;
     }
+
+    const body = {
+      accion: 'login',
+      email: this.formDataL.get('email')!.value,
+      password: this.formDataL.get('password')!.value
+    }
+
+
+    this.auth.postData(body).subscribe((data: any) => {
+      if (data.status) {
+        const user: IUsuario = data.data
+
+        this.auth.createSession("user", JSON.stringify(user))
+        this.auth.showToast(data.msg);
+        this._navController.navigateRoot('/home');
+        this.formData.reset()
+
+      } else {
+        this.auth.showToast(data.message);
+      }
+    });
+
   }
 
   register() {
@@ -65,21 +73,21 @@ export class LoginPage {
     if (this.formData.valid) {
 
       const body = {
-        accion: "registrarUser",
-        cedula: this.formData.get('cedula')!.value,
+        accion: "register",
+        identificacion: this.formData.get('cedula')!.value,
         nombre: this.formData.get('name')!.value,
         segundo_nombre: this.formData.get('secondname')!.value,
         apellido: this.formData.get('lastname')!.value,
         segundo_apellido: this.formData.get('secondlastname')!.value,
-        numero_celular: this.formData.get('celular')!.value,
+        telefono: this.formData.get('celular')!.value,
         email: this.formData.get('email')!.value,
         password: this.formData.get('password')!.value
       }
-
-      this.auth.userRegister(body).subscribe((data: any) => {
+      console.log(body)
+      this.auth.postData(body).subscribe((data: any) => {
         if (data.status) {
           this.screen = 'signin';
-          this.auth.showToast(data.message);
+          this.auth.showToast(data.msg);
           this.formData.reset()
         } else {
           this.auth.showToast(data.message);

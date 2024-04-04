@@ -1,0 +1,52 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button default-href="/listado"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Registrar Niño</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <form [formGroup]="formData">
+    <ion-list class="ion-padding">
+      <ion-input formControlName="identificacion" errorText="Ingrese la cedula" fill="outline" labelPlacement="fixed"
+        type="number" placeholder="*Identificación">
+        <ion-icon slot="start" name="person"></ion-icon>
+      </ion-input>
+      <ion-input formControlName="primer_nombre" errorText="Ingrese el primer nombre" fill="outline"
+        labelPlacement="fixed" type="text" placeholder="*Primer Nombre">
+        <ion-icon slot="start" name="text"></ion-icon>
+      </ion-input>
+      <ion-input formControlName="segundo_nombre" fill="outline" labelPlacement="fixed" type="text"
+        placeholder="Segundo Nombre">
+        <ion-icon slot="start" name="text"></ion-icon>
+      </ion-input>
+      <ion-input formControlName="primer_apellido" errorText="Ingrese el primer apellido" fill="outline"
+        labelPlacement="fixed" type="text" placeholder="*Primer Apellido">
+        <ion-icon slot="start" name="text"></ion-icon>
+      </ion-input>
+      <ion-input formControlName="segundo_apellido" fill="outline" labelPlacement="fixed" type="text"
+        placeholder="Segundo Apellido">
+        <ion-icon slot="start" name="text"></ion-icon>
+      </ion-input>
+      <ion-input formControlName="fecha_nacimiento" errorText="Ingrese la fecha de nacimiento" fill="outline"
+        labelPlacement="fixed" type="date" placeholder="*Fecha Nacimiento">
+        <ion-icon slot="start" name="calendar"></ion-icon>
+      </ion-input>
+
+      <ion-select formControlName="genero" errorText="Seleccione el genero" placeholder="Género" fill="outline"
+        labelPlacement="fixed">
+        <ion-icon slot="start" name="male-female"></ion-icon>
+        <ion-select-option value="masculino">Masculino</ion-select-option>
+        <ion-select-option value="femenino">Femenino</ion-select-option>
+      </ion-select>
+      <br />
+      <ion-note>Los campos con * son obligatorios</ion-note>
+      <ion-button (click)="registrar()" expand="block" shape="round">Registrar</ion-button>
+
+
+    </ion-list>
+  </form>
+</ion-content>

@@ -1,3 +1,15 @@
+ion-toolbar {
+    --background: #20315F;
+    --color: white;
+}
+
+ion-button {
+    --background: #20315F;
+    --color: white;
+}
+
+
+
 .heading {
     font-size: 32px;
     font-weight: bold;
@@ -6,12 +18,29 @@
     margin-bottom: -60px;
 }
 
+.heading2 {
+    font-size: 32px;
+    font-weight: bold;
+    padding-left: 20px;
+
+    margin-bottom: -60px;
+}
+
 .para {
     font-size: 22px;
     font-weight: 500;
     padding-left: 20px;
-    margin-bottom: 70px;
+    margin-bottom: 50px;
     color: #A6ABB1;
+}
+
+.form {
+    padding-left: 20px;
+    padding-right: 20px;
+
+    ion-input {
+        margin-bottom: 10px;
+    }
 }
 
 .input-item {
@@ -24,10 +53,6 @@
     ion-input {
         margin-top: -12px;
     }
-}
-
-.ion-item {
-    margin-top: 20px;
 }
 
 .forget-text {
@@ -46,19 +71,11 @@
     padding-right: 20px;
     height: 50px;
     --border-radius: 12px;
-    margin-top: 60px;
+    margin-top: 20px;
     --box-shadow: none;
 }
 
-.google-button {
-    padding-left: 20px;
-    padding-right: 20px;
-    height: 50px;
-    --border-radius: 12px;
-    margin-top: 20px;
-    margin-bottom: 40px;
-    --box-shadow: none;
-}
+
 
 .signup-text {
     a {

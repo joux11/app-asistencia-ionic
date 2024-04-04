@@ -1,0 +1,48 @@
+<ion-header id="menu">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Listado Niños
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button id="hover-trigger">
+        <ion-icon slot="icon-only" ios="ellipsis-horizontal" md="ellipsis-vertical"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-popover trigger="hover-trigger" triggerAction="hover">
+      <ng-template>
+        <ion-item [button]="true" (click)="ir()">
+          <ion-label>Registrar Niños</ion-label>
+        </ion-item>
+      </ng-template>
+    </ion-popover>
+  </ion-toolbar>
+</ion-header>
+<app-menu></app-menu>
+
+<ion-content [fullscreen]="true">
+  <ion-list>
+    <ion-card *ngFor="let child of children">
+      <ion-item [button]="true" (click)="childPage(child.id)">
+        <ion-card-content>
+          <div class="img">
+            <img [src]=" child | kidImage" />
+            <ion-icon *ngIf="hayHoraEntrada(child.id)" name="warning" color="warning"></ion-icon>
+            <ion-icon *ngIf="hayHoraSalida(child.id)" name="checkmark-circle" color="success"></ion-icon>
+          </div>
+          <div class="text">
+            <p>Nombre: {{child.primer_nombre}} {{child.segundo_nombre}} {{child.primer_apellido}}
+              {{child.segundo_apellido}}</p>
+            <span>Cedula: {{child.identificacion}}</span>
+            <span>Genero: {{child.genero | capitalize}}</span>
+          </div>
+        </ion-card-content>
+      </ion-item>
+    </ion-card>
+  </ion-list>
+</ion-content>
+<div class="footer">
+  <p>Total de Registros: {{children.length}}</p>
+</div>

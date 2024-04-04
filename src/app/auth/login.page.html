@@ -1,22 +1,23 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>
+      Inicio de Sesion
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
 <ion-content [fullscreen]="true">
 
   <!-- Login Page -->
-  <div class="container" *ngIf="screen === 'signin'">
+  <div *ngIf="screen === 'signin'">
     <h1 class="heading">👋 Bienvenido<br><br></h1>
     <p class="para">Iniciar Sesion</p>
-    <form [formGroup]="formDataL">
-      <ion-item lines="none" class="ion-item">
-        <fieldset class="input-item">
-          <legend>Correo Electronico</legend>
-          <ion-input formControlName="email" type="email" placeholder="name@domain.com"></ion-input>
-        </fieldset>
-      </ion-item>
-      <ion-item lines="none" class="ion-item">
-        <fieldset class="input-item">
-          <legend>Contraseña</legend>
-          <ion-input formControlName="password" type="password" placeholder="*******"></ion-input>
-        </fieldset>
-      </ion-item>
+    <form class="form" [formGroup]="formDataL">
+
+      <ion-input errorText="Ingrese un email valido" type="email" formControlName="email" label="Correo Electronico"
+        label-placement="floating" fill="outline" placeholder="Enter text"></ion-input>
+
+      <ion-input errorText="Ingrese una contraseña" formControlName="password" type="password" label="Contraseña"
+        label-placement="floating" placeholder="*******" fill="outline"></ion-input>
 
       <p class="signup-text"><a (click)="change('signup')">Registrase</a></p>
       <ion-button class="login-button" (click)="login()" expand="block">Ingresar</ion-button>
@@ -26,7 +27,7 @@
 
   <!-- Sign up page -->
   <div class="container" *ngIf="screen === 'signup'">
-    <h1 class="heading">🚀 Crear una Cuenta<br><br></h1>
+    <h1 class="heading2">🚀 Crear una Cuenta<br><br></h1>
     <p class="para">Registrate para continuar</p>
     <form [formGroup]="formData">
       <ion-item lines="none" class="ion-item">

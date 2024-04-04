@@ -1,0 +1,31 @@
+ion-toolbar {
+    --background: #20315F;
+    --color: white;
+}
+
+ion-card-content {
+    display: flex;
+    align-items: center;
+
+    padding-left: 0px;
+
+    img {
+        width: 60px;
+        height: auto;
+
+    }
+
+    div {
+        padding-left: 10px;
+
+        p {
+            font-weight: bold;
+            font-size: 15px;
+            text-transform: uppercase;
+        }
+
+        span {
+            display: flex;
+        }
+    }
+}

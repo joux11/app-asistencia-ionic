@@ -1,21 +1,67 @@
-<ion-header [translucent]="true">
+<ion-header id="menu">
   <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button auto-hide="false"></ion-menu-button>
+    </ion-buttons>
     <ion-title>
       Menu Principal
     </ion-title>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon slot="icon-only" ios="ellipsis-horizontal" md="ellipsis-vertical"></ion-icon>
+      </ion-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
+<app-menu></app-menu>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Menu Principal</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
-  <div id="container">
-    <strong>Bienvenido</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer"
-        href="https://ionicframework.com/docs/components">UI Components</a></p>
+<ion-content class="content" [fullscreen]="true">
+  <div>
+    <ion-card>
+      <ion-item [button]="true" lines="none" (click)="irRegistroAsistencia()">
+        <ion-card-content>
+          <img src="../../assets/img/attendance.png" alt="">
+          Registrar mi Asistencia</ion-card-content>
+      </ion-item>
+    </ion-card>
+    <ion-card>
+      <ion-item [button]="true" lines="none" (click)="irRegistroAsistenciaN()">
+
+        <ion-card-content>
+          <img src="../../assets/img/kidds.png" alt="">
+          Registrar Asistencia de los Niños
+        </ion-card-content>
+      </ion-item>
+    </ion-card>
   </div>
+  <div>
+    <ion-card>
+      <ion-item [button]="true" lines="none" (click)="irAsistenciaRegistradas()">
+        <ion-card-content>
+          <img src="../../assets/img/asistencia_re.png" alt="">
+          Asistencias Registradas</ion-card-content>
+      </ion-item>
+    </ion-card>
+    <ion-card>
+      <ion-item [button]="true" lines="none" (click)="irAcercaDe()">
+
+        <ion-card-content>
+          <img src="../../assets/img/info.png" alt="">
+          Acerca de
+        </ion-card-content>
+      </ion-item>
+    </ion-card>
+  </div>
+
+  <ion-card style="width: 150px; margin: 0 auto; margin-top: 15px; ">
+    <ion-item [button]="true" lines="none" (click)="logout()">
+
+      <ion-card-content>
+        <img src="../../assets/img/logout.png" alt="">
+        Cerrar Sesion
+      </ion-card-content>
+    </ion-item>
+  </ion-card>
+
 </ion-content>

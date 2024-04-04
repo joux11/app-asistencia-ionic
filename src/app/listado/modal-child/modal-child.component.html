@@ -1,0 +1,70 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="" (click)="cancel()"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Registrar Asistencia</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="ion-padding">
+  <ion-list>
+    <h5>Datos del Niño:</h5>
+    <ion-card>
+      <ion-card-content>
+        <p>Cedula: <span>{{child?.identificacion}}</span></p>
+        <p>Primer Nombre: <span>{{child?.primer_nombre | uppercase}}</span></p>
+        <p>Segundo Nombre: <span>{{child?.segundo_nombre | uppercase}}</span></p>
+        <p>Primer Apellido: <span>{{child?.primer_apellido | uppercase}}</span></p>
+        <p>Segundo Apellido: <span>{{child?.segundo_apellido | uppercase}}</span></p>
+        <p>Fecha de Nacimiento: <span>{{child?.fecha_nacimiento | date: 'dd/MM/yyyy'}}</span></p>
+        <p>Edad: <span>{{child?.fecha_nacimiento | age}}</span></p>
+        <p>Genero: <span>{{child?.genero | capitalize | uppercase}}</span></p>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+
+  <ion-list>
+    <h5>Fecha de Marcacion:</h5>
+    <ion-input fill="outline" label-placement="floating" label="Fecha de Marcacion" [(ngModel)]="fecha_actual"
+      type="date" readonly="true"></ion-input>
+  </ion-list>
+
+  <ion-card *ngIf="horaRegistroEntrada">
+    <ion-card-content style="display: flex; align-items: center;">
+      <ion-icon name="checkmark-circle" color="success" size="large" style="margin-right: 10px;"></ion-icon>
+      El registro de entrada fue registrada con exito!
+      <br />
+      <b>Hora de Entrada: {{horaRegistroEntrada}}</b>
+    </ion-card-content>
+  </ion-card>
+  <ion-card *ngIf="mostrarRegistroSalida">
+    <ion-card-content style="display: flex; align-items: center;">
+      <ion-icon name="checkmark-circle" color="success" size="large" style="margin-right: 10px;"></ion-icon>
+      El registro de salida fue registrada con exito!
+      <br />
+      <b>Hora de Salida: {{horaRegistroSalida}}</b>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-list *ngIf="mostrarDatosEntrada">
+    <h5>Hora de Entrada:</h5>
+    <ion-input fill="outline" label-placement="floating" label="Hora de Entrada" [(ngModel)]="hora_actual" type="time"
+      readonly="true"></ion-input>
+
+    <ion-textarea *ngIf="observaciones_entrada" [(ngModel)]="txt_observacion_entrada"
+      style="margin-top: 10px; height: 100px; margin-bottom: 10px;" label="Observaciones de Entrada"
+      labelPlacement="floating" fill="outline" placeholder="Enter text"></ion-textarea>
+
+  </ion-list>
+
+  <ion-list *ngIf="mostrarDatosSalida">
+    <h5>Hora de Salida:</h5>
+    <ion-input fill="outline" label-placement="floating" label="Hora de Salida" [(ngModel)]="hora_actual" type="time"
+      readonly="true"></ion-input>
+    <ion-textarea [(ngModel)]="txt_observacion_salida" style="margin-top: 10px; height: 100px; margin-bottom: 10px;"
+      label="Observaciones de Salida" labelPlacement="floating" fill="outline" placeholder="Enter text"></ion-textarea>
+  </ion-list>
+
+  <ion-button *ngIf="mostrarDatosEntrada" (click)="registrarEntrada()" expand="block">Registrar Entrada</ion-button>
+  <ion-button *ngIf="mostrarDatosSalida" (click)="registrarSalida()" expand="block">Registrar Salida</ion-button>
+</ion-content>

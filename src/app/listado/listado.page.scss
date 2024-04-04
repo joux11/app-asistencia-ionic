@@ -1,0 +1,64 @@
+ion-toolbar {
+    --background: #20315F;
+    --color: white;
+}
+
+ion-card-content {
+    display: flex;
+    align-items: center;
+
+    padding-left: 0px;
+
+    .img {
+        position: relative;
+
+        img {
+            width: 60px;
+            height: auto;
+
+        }
+
+        ion-icon {
+            font-size: 45px;
+            position: absolute;
+            bottom: 35px;
+            left: 20px;
+
+
+        }
+    }
+
+
+
+    .text {
+        padding-left: 10px;
+
+        p {
+            font-weight: bold;
+            font-size: 15px;
+            text-transform: uppercase;
+        }
+
+        span {
+            display: flex;
+        }
+    }
+}
+
+.content {
+    --background: url('../../assets/img/texture2.png') no-repeat center center/cover;
+}
+
+.footer {
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    background-color: white;
+    border-top: 1px solid #ccc;
+
+    p {
+        margin: 5px;
+        font-size: 15px;
+        font-weight: bold;
+    }
+}
