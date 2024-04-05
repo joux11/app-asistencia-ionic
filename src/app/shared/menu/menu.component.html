@@ -20,7 +20,12 @@
         <ion-label style="font-size: 17px; margin-left: 15px; font-weight: bold;">{{menuItem.titulo}}</ion-label>
       </ion-item>
     </ion-list>
-
+    <ion-list *ngIf="isAdmin">
+      <ion-item [button]="true" (click)="ir('/admin')">
+        <img style="width: 38px;margin-top: 15px; margin-bottom: 15px;" src="../../../../assets/img/admin.png">
+        <ion-label style="font-size: 17px; margin-left: 15px; font-weight: bold;">Administracion</ion-label>
+      </ion-item>
+    </ion-list>
 
     <ion-list>
       <ion-item [button]="true" (click)="logout()">

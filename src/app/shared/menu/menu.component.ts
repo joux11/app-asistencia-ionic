@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input, input } from '@angular/core';
+import { AfterViewInit, Component, Input, input } from '@angular/core';
 
 import { IonicModule, MenuController, NavController } from '@ionic/angular';
 import { IUsuario } from 'src/app/interfaces/Usuario.interface';
@@ -19,9 +19,10 @@ import { AppService } from 'src/app/services/app.service';
   ]
 
 })
-export class MenuComponent {
+export class MenuComponent implements AfterViewInit {
 
   usuario?: IUsuario;
+  isAdmin: boolean = false;
   menuItems = [
     {
       ruta: "/home",
@@ -48,6 +49,7 @@ export class MenuComponent {
       imagen_url: "../../../../assets/img/info.png",
       titulo: "Acerca de"
     }
+
   ];
 
 
@@ -60,9 +62,18 @@ export class MenuComponent {
   ) {
     this.appService.getSession("user").then(usuario => {
       this.usuario = JSON.parse(usuario!)
+      if (this.usuario?.rol_id == 1) {
+        this.isAdmin = true
+      }
     })
+    console.log("xd");
   }
-
+  ngAfterViewInit(): void {
+    console.log("xdEntera");
+  }
+  ionViewWillEnter() {
+    console.log("xdEnter");
+  }
 
   ir(ruta: string) {
     this.menuController.close();

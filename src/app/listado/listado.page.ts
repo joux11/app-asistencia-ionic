@@ -5,6 +5,7 @@ import { AppService } from '../services/app.service';
 import { ModalChildComponent } from './modal-child/modal-child.component';
 import * as moment from 'moment';
 import { IAsistenciaN } from '../interfaces/RegistroAsistenciaN.interface';
+import { IUsuario } from '../interfaces/Usuario.interface';
 
 @Component({
   selector: 'app-listado',
@@ -12,6 +13,7 @@ import { IAsistenciaN } from '../interfaces/RegistroAsistenciaN.interface';
   styleUrls: ['./listado.page.scss'],
 })
 export class ListadoPage {
+  usuario?: IUsuario;
   children: IChild[] = [];
   AsistenciaN: IAsistenciaN[] = [];
 
@@ -28,10 +30,15 @@ export class ListadoPage {
   }
 
   ionViewWillEnter() {
-    this.appService.postData({ accion: "getAllChildren" }).subscribe((res: any) => {
-      this.children = res
-      this.listarAsistenciaByDate()
+    this.appService.getSession("user").then(user => {
+      this.usuario = JSON.parse(user!)
+
+      this.appService.postData({ accion: "getAllChildrenByAula", aula_id: this.usuario?.aula_id }).subscribe((res: any) => {
+        this.children = res
+        this.listarAsistenciaByDate()
+      })
     })
+
 
 
   }

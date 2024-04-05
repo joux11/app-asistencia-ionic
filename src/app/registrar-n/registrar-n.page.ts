@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AppService } from '../services/app.service';
 import { NavController } from '@ionic/angular';
+import { IUsuario } from '../interfaces/Usuario.interface';
 
 @Component({
   selector: 'app-registrar-n',
@@ -9,6 +10,8 @@ import { NavController } from '@ionic/angular';
   styleUrls: ['./registrar-n.page.scss'],
 })
 export class RegistrarNPage {
+
+  usuario?: IUsuario
 
   formData: FormGroup
   constructor(
@@ -29,27 +32,32 @@ export class RegistrarNPage {
 
   registrar() {
     if (!this.formData.valid) return this.formData.markAllAsTouched()
-    const body = {
-      accion: "registerNiño",
-      identificacion: this.formData.get('identificacion')!.value,
-      primer_nombre: this.formData.get('primer_nombre')!.value,
-      segundo_nombre: this.formData.get('segundo_nombre')!.value,
-      primer_apellido: this.formData.get('primer_apellido')!.value,
-      segundo_apellido: this.formData.get('segundo_apellido')!.value,
-      fecha_nacimiento: this.formData.get('fecha_nacimiento')!.value,
-      genero: this.formData.get('genero')!.value
-    }
-
-    this.appService.postData(body).subscribe((res: any) => {
-      if (res.status) {
-        this.appService.showToast(res.msg)
-        this.formData.reset()
-        this.nav.navigateRoot("/listado")
-      } else {
-        this.appService.showToast(res.msg)
-
+    this.appService.getSession("user").then(user => {
+      this.usuario = JSON.parse(user!)
+      const body = {
+        accion: "registerNiño",
+        identificacion: this.formData.get('identificacion')!.value,
+        primer_nombre: this.formData.get('primer_nombre')!.value,
+        segundo_nombre: this.formData.get('segundo_nombre')!.value,
+        primer_apellido: this.formData.get('primer_apellido')!.value,
+        segundo_apellido: this.formData.get('segundo_apellido')!.value,
+        fecha_nacimiento: this.formData.get('fecha_nacimiento')!.value,
+        genero: this.formData.get('genero')!.value,
+        aula_id: this.usuario?.aula_id
       }
+      console.log(body)
+      this.appService.postData(body).subscribe((res: any) => {
+        if (res.status) {
+          this.appService.showToast(res.msg)
+          this.formData.reset()
+          this.nav.navigateRoot("/listado")
+        } else {
+          this.appService.showToast(res.msg)
+
+        }
+      })
     })
+
   }
 
 

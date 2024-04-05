@@ -1,0 +1,48 @@
+<ion-header id="menu">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button auto-hide="false"></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Administracion
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon slot="icon-only" ios="ellipsis-horizontal" md="ellipsis-vertical"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<app-menu></app-menu>
+
+<ion-content [fullscreen]="true">
+  <ion-list [inset]="true">
+    <ion-item [button]="true" detail="false" *ngFor="let item of items" (click)="abrirModal(item.component!)">
+      <ion-icon slot="start" [name]="item.icon"></ion-icon>
+      <ion-label>
+        <strong>{{item.nombre}} </strong>
+        <br />
+        <ion-note color="medium">
+          {{item.descripcion}}
+        </ion-note>
+      </ion-label>
+      <div class="metadata-end-wrapper" slot="end">
+        <ion-icon color="medium" name="chevron-forward"></ion-icon>
+      </div>
+    </ion-item>
+    <ion-item [button]="true" detail="false" (click)="respaldar()">
+      <ion-icon slot="start" name="server-outline"></ion-icon>
+      <ion-label>
+        <strong>Respaldar Base de Datos</strong>
+        <br />
+        <ion-note color="medium">
+          Respaldar la base de datos
+        </ion-note>
+      </ion-label>
+      <div class="metadata-end-wrapper" slot="end">
+        <ion-icon color="medium" name="chevron-forward"></ion-icon>
+      </div>
+    </ion-item>
+
+  </ion-list>
+</ion-content>

@@ -11,4 +11,5 @@ export interface IUsuario {
     created_at: Date;
     updated_at: Date;
     rol_id: number;
+    aula_id?: number;
 }

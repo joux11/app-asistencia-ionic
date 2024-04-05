@@ -52,7 +52,12 @@ const routes: Routes = [
   },
   {
     path: 'listado-asistencia',
-    loadChildren: () => import('./listado-asistencia/listado-asistencia.module').then( m => m.ListadoAsistenciaPageModule)
+    loadChildren: () => import('./listado-asistencia/listado-asistencia.module').then(m => m.ListadoAsistenciaPageModule)
+  },
+  {
+    path: 'admin',
+    loadChildren: () => import('./admin/admin.module').then(m => m.AdminPageModule),
+    canActivate: [IsAuthenticatedGuard]
   },
 
 ];

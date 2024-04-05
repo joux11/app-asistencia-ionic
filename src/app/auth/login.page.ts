@@ -50,9 +50,9 @@ export class LoginPage {
       email: this.formDataL.get('email')!.value,
       password: this.formDataL.get('password')!.value
     }
-
-
+    //console.log(body)
     this.auth.postData(body).subscribe((data: any) => {
+
       if (data.status) {
         const user: IUsuario = data.data
 
@@ -62,7 +62,7 @@ export class LoginPage {
         this.formData.reset()
 
       } else {
-        this.auth.showToast(data.message);
+        this.auth.showToast(data.msg);
       }
     });
 
@@ -83,7 +83,7 @@ export class LoginPage {
         email: this.formData.get('email')!.value,
         password: this.formData.get('password')!.value
       }
-      console.log(body)
+
       this.auth.postData(body).subscribe((data: any) => {
         if (data.status) {
           this.screen = 'signin';

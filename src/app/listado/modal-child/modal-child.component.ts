@@ -120,7 +120,7 @@ export class ModalChildComponent {
       niño_id: this.id!,
 
     }
-
+    
     this.appService.postData(body).subscribe((res: any) => {
       if (res.status) {
         this.appService.showToast(res.msg)

@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/admin" (click)="cancel()"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Usuarios</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-list>
+    <ion-card *ngFor="let usuario of usuarios">
+      <ion-item [button]="true" (click)="ir(usuario.estado, usuario.id)">
+        <ion-card-content>
+          <img src="../../assets/icon/account.png" />
+          <div>
+            <p>Nombre: {{usuario?.primer_nombre}} {{usuario?.segundo_nombre}} {{usuario?.primer_apellido}}
+              {{usuario?.segundo_apellido}}</p>
+            <span>Cedula: {{usuario?.identificacion}}</span>
+            <span>Email: {{usuario?.email}}</span>
+            <span>Estado: <ion-text style="font-weight: bold;"
+                [color]="(usuario?.estado === 1) ? 'success' : 'danger'">{{(usuario?.estado === 1)
+                ? "Activo" : "Inactivo"}}
+              </ion-text></span>
+          </div>
+        </ion-card-content>
+      </ion-item>
+    </ion-card>
+  </ion-list>
+</ion-content>

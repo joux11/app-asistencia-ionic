@@ -1,0 +1,58 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/admin" (click)="cancel()"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Asignacion de Aulas</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-list class="ion-padding">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title>Aulas - Docentes</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <table mat-table [dataSource]="dataSource">
+          <!-- <ng-container matColumnDef="position">
+        <th mat-header-cell *matHeaderCellDef> No. </th>
+        <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+      </ng-container> -->
+          <ng-container matColumnDef="nombre_docente">
+            <th mat-header-cell *matHeaderCellDef> Nombre del Docente </th>
+            <td mat-cell *matCellDef="let element"> {{element.nombre_docente}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="aula">
+            <th mat-header-cell *matHeaderCellDef> Aula</th>
+            <td mat-cell *matCellDef="let element"> {{element.aula}} </td>
+          </ng-container>
+
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+        </table>
+      </ion-card-content>
+    </ion-card>
+
+
+    <ion-item-divider></ion-item-divider>
+
+    <p style="font-weight: bold;">Docentes/Profesores</p>
+    <ion-select [(ngModel)]="usuario" fill="outline" placeholder="Selecciona un Docente">
+      <ion-select-option *ngFor="let user of usuarios" [value]="user.id">{{user.primer_nombre}}
+        {{user.primer_apellido}}</ion-select-option>
+    </ion-select>
+
+    <ion-item-divider></ion-item-divider>
+    <p style="font-weight: bold;">Aulas</p>
+    <ion-select [(ngModel)]="aula" fill="outline" placeholder="Selecciona un Aula">
+      <ion-select-option *ngFor="let aula of aulas" [value]="aula.id">{{aula.nombre}}
+      </ion-select-option>
+    </ion-select>
+    <br />
+    <ion-button shape="round" expand="block" [disabled]="!usuario || !aula" (click)="asignar()">Asignar</ion-button>
+
+  </ion-list>
+</ion-content>

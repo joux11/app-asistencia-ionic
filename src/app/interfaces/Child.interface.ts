@@ -9,4 +9,5 @@ export interface IChild {
     genero: string;
     created_at: Date;
     update_at: Date;
+    aula_id?: number
 }
